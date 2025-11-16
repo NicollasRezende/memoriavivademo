@@ -3,6 +3,22 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Memória Viva+ Colors */
+  --cerrado-yellow: #F2C94C;
+  --cerrado-yellow-light: #F8E3A3;
+  --cerrado-yellow-dark: #D4A93A;
+
+  --ipe-green: #27AE60;
+  --ipe-green-light: #6FCF97;
+  --ipe-green-dark: #1E8449;
+
+  --wisdom-purple: #9B59B6;
+  --wisdom-purple-light: #C39BD3;
+  --wisdom-purple-dark: #7D3C98;
+
+  --neutral-light: #F5F5F5;
+  --neutral-dark: #333333;
 }
 
 @theme inline {
@@ -10,17 +26,37 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Custom colors for the project */
+  --color-cerrado: var(--cerrado-yellow);
+  --color-cerrado-light: var(--cerrado-yellow-light);
+  --color-cerrado-dark: var(--cerrado-yellow-dark);
+
+  --color-ipe: var(--ipe-green);
+  --color-ipe-light: var(--ipe-green-light);
+  --color-ipe-dark: var(--ipe-green-dark);
+
+  --color-wisdom: var(--wisdom-purple);
+  --color-wisdom-light: var(--wisdom-purple-light);
+  --color-wisdom-dark: var(--wisdom-purple-dark);
+
+  --color-neutral-light: var(--neutral-light);
+  --color-neutral-dark: var(--neutral-dark);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Accessibility - focus visible */
+*:focus-visible {
+  outline: 3px solid var(--ipe-green);
+  outline-offset: 2px;
 }
