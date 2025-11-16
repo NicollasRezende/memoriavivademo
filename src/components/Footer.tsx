@@ -47,26 +47,35 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="font-bold mb-3">Contato</h4>
+            <h4 className="font-bold mb-3">Desenvolvedor</h4>
             <p className="text-white/70 mb-4">
               Projeto desenvolvido para o Ideathon Campus GO 2025 - Desafio 1
             </p>
             <div className="flex gap-3">
               <a
-                href="#"
+                href="https://github.com/NicollasRezende"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 bg-white/10 hover:bg-ipe rounded-full flex items-center justify-center transition-colors"
+                aria-label="GitHub"
               >
                 <Github className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/in/nicollas-rezende/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 bg-white/10 hover:bg-ipe rounded-full flex items-center justify-center transition-colors"
+                aria-label="LinkedIn"
               >
                 <Linkedin className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href="https://nikz.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 bg-white/10 hover:bg-ipe rounded-full flex items-center justify-center transition-colors"
+                aria-label="Portfólio"
               >
                 <Mail className="w-5 h-5" />
               </a>

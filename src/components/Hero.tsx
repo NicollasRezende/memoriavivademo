@@ -52,21 +52,23 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <motion.button
-                className="bg-ipe text-white px-8 py-4 rounded-full text-lg font-medium shadow-lg hover:bg-ipe-dark transition-colors"
+              <motion.a
+                href="/sobre"
+                className="bg-ipe text-white px-8 py-4 rounded-full text-lg font-medium shadow-lg hover:bg-ipe-dark transition-colors text-center inline-block"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 Conhecer a Plataforma
-              </motion.button>
+              </motion.a>
 
-              <motion.button
-                className="bg-white text-ipe border-2 border-ipe px-8 py-4 rounded-full text-lg font-medium hover:bg-ipe/10 transition-colors"
+              <motion.a
+                href="/demo"
+                className="bg-white text-ipe border-2 border-ipe px-8 py-4 rounded-full text-lg font-medium hover:bg-ipe/10 transition-colors text-center inline-block"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 Ver Demonstração
-              </motion.button>
+              </motion.a>
             </div>
 
             {/* Stats - Asymmetric placement */}

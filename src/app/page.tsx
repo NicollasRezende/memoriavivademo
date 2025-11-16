@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
+import HowItWorks from "@/components/HowItWorks";
 import MemoryTimeline from "@/components/MemoryTimeline";
 import AICompanion from "@/components/AICompanion";
 import SocialCircles from "@/components/SocialCircles";
@@ -11,6 +12,7 @@ export default function Home() {
     <main className="min-h-screen">
       <Hero />
       <Features />
+      <HowItWorks />
       <MemoryTimeline />
       <AICompanion />
       <SocialCircles />
