@@ -1,14 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Heart, Users, Sparkles, MapPin } from "lucide-react";
+import { Heart, Users, Sparkles, MapPin, Mic, Brain } from "lucide-react";
+import PequiIcon from "./PequiIcon";
 
 export default function Hero() {
   return (
     <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-cerrado-light via-white to-wisdom-light">
-      {/* Asymmetric Background Elements */}
-      <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-ipe-light/20 rounded-bl-[200px] -z-10" />
-      <div className="absolute bottom-0 left-0 w-2/3 h-1/3 bg-cerrado/10 rounded-tr-[150px] -z-10" />
+      {/* Asymmetric Background Elements - More Dynamic */}
+      <div className="absolute top-0 right-0 w-2/3 h-2/3 bg-gradient-to-bl from-ipe-light/30 via-ipe/10 to-transparent rounded-bl-[300px] -z-10" />
+      <div className="absolute bottom-0 left-0 w-3/4 h-1/2 bg-gradient-to-tr from-cerrado/20 via-wisdom-light/10 to-transparent rounded-tr-[250px] -z-10" />
+      <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-wisdom/5 rounded-full blur-3xl -z-10" />
 
       <div className="container mx-auto px-4 py-20">
         {/* Asymmetric Grid Layout */}
@@ -102,46 +104,94 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <div className="relative">
-              {/* Mascot Placeholder - Sabichão */}
-              <div className="aspect-square bg-gradient-to-br from-cerrado to-cerrado-dark rounded-3xl shadow-2xl p-8 flex items-center justify-center transform rotate-3 hover:rotate-0 transition-transform duration-300">
-                <div className="text-center text-white space-y-4">
-                  <div className="text-8xl">🥭</div>
-                  <p className="text-2xl font-bold">Sabichão</p>
-                  <p className="text-sm opacity-90">Seu companheiro digital</p>
+              {/* Mascot Card - Pequi - Larger and More Dynamic */}
+              <div className="aspect-square bg-gradient-to-br from-cerrado via-cerrado-dark to-cerrado rounded-[2.5rem] shadow-2xl p-6 md:p-10 flex items-center justify-center transform rotate-2 hover:rotate-0 transition-all duration-500 hover:shadow-3xl hover:scale-105 border-4 border-white/20">
+                <div className="text-center text-white space-y-5 w-full">
+                  {/* Imagem do Pequi - maior e sem fundo */}
+                  <div className="flex justify-center mb-2">
+                    <motion.div
+                      style={{
+                        backgroundColor: 'transparent',
+                        background: 'transparent'
+                      }}
+                      animate={{
+                        rotate: [0, 5, -5, 0],
+                        scale: [1, 1.05, 1]
+                      }}
+                      transition={{
+                        repeat: Infinity,
+                        duration: 4,
+                        ease: "easeInOut"
+                      }}
+                    >
+                      <PequiIcon
+                        size={140}
+                        className="drop-shadow-2xl"
+                      />
+                    </motion.div>
+                  </div>
+
+                  {/* Nome */}
+                  <div>
+                    <p className="text-4xl md:text-5xl font-bold tracking-tight">Pequi</p>
+                  </div>
+
+                  {/* Tagline */}
+                  <div>
+                    <p className="text-base md:text-lg opacity-90 font-medium">Seu companheiro digital</p>
+                  </div>
                 </div>
               </div>
 
-              {/* Floating Cards */}
+              {/* Floating Cards - More Dynamic and Varied */}
               <motion.div
-                className="absolute -top-6 -left-6 bg-white p-4 rounded-2xl shadow-lg"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ repeat: Infinity, duration: 3 }}
+                className="absolute -top-8 -left-8 bg-white p-5 rounded-2xl shadow-xl border-2 border-ipe-light/30 backdrop-blur-sm"
+                animate={{
+                  y: [0, -15, 0],
+                  rotate: [-2, 2, -2]
+                }}
+                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-ipe-light rounded-full flex items-center justify-center">
-                    <Heart className="w-6 h-6 text-ipe-dark" />
+                  <div className="w-14 h-14 bg-gradient-to-br from-ipe-light to-ipe rounded-2xl flex items-center justify-center shadow-md">
+                    <Mic className="w-7 h-7 text-white" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-neutral-dark">Acolhe IA</p>
-                    <p className="text-xs text-neutral-dark/60">Sempre ao seu lado</p>
+                    <p className="text-sm font-bold text-neutral-dark">Comando de Voz</p>
+                    <p className="text-xs text-neutral-dark/60">100% acessível</p>
                   </div>
                 </div>
               </motion.div>
 
               <motion.div
-                className="absolute -bottom-6 -right-6 bg-white p-4 rounded-2xl shadow-lg"
-                animate={{ y: [0, 10, 0] }}
-                transition={{ repeat: Infinity, duration: 3, delay: 1 }}
+                className="absolute -bottom-8 -right-8 bg-white p-5 rounded-2xl shadow-xl border-2 border-wisdom-light/30 backdrop-blur-sm"
+                animate={{
+                  y: [0, 15, 0],
+                  rotate: [2, -2, 2]
+                }}
+                transition={{ repeat: Infinity, duration: 4.5, delay: 1, ease: "easeInOut" }}
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-wisdom-light rounded-full flex items-center justify-center">
-                    <Users className="w-6 h-6 text-wisdom-dark" />
+                  <div className="w-14 h-14 bg-gradient-to-br from-wisdom-light to-wisdom rounded-2xl flex items-center justify-center shadow-md">
+                    <Brain className="w-7 h-7 text-white" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-neutral-dark">Círculos</p>
-                    <p className="text-xs text-neutral-dark/60">Conecte-se</p>
+                    <p className="text-sm font-bold text-neutral-dark">IA Afetiva</p>
+                    <p className="text-xs text-neutral-dark/60">Aprende com você</p>
                   </div>
                 </div>
+              </motion.div>
+
+              {/* Additional small floating element */}
+              <motion.div
+                className="absolute top-1/2 -left-6 bg-gradient-to-r from-cerrado to-cerrado-dark p-3 rounded-xl shadow-lg"
+                animate={{
+                  x: [0, -10, 0],
+                  scale: [1, 1.1, 1]
+                }}
+                transition={{ repeat: Infinity, duration: 3.5, delay: 0.5 }}
+              >
+                <Heart className="w-6 h-6 text-white" />
               </motion.div>
             </div>
           </motion.div>

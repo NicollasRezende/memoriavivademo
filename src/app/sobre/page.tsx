@@ -88,47 +88,46 @@ export default function SobrePage() {
           <div className="bg-white rounded-3xl p-12 shadow-xl mb-8">
             <div className="flex items-center gap-3 mb-6">
               <Users className="w-8 h-8 text-ipe" />
-              <h2 className="text-3xl font-bold text-neutral-dark">Desenvolvedor</h2>
+              <h2 className="text-3xl font-bold text-neutral-dark">Desenvolvedores</h2>
             </div>
-            <div className="flex items-center gap-6">
-              <div className="w-20 h-20 bg-gradient-to-br from-ipe to-ipe-dark rounded-full flex items-center justify-center text-white text-2xl font-bold">
-                NR
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-neutral-dark">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* Nicollas Rezende */}
+              <div className="flex flex-col items-center text-center">
+                <div className="w-20 h-20 bg-gradient-to-br from-ipe to-ipe-dark rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4">
+                  NR
+                </div>
+                <h3 className="text-lg font-bold text-neutral-dark mb-1 break-words">
                   Nicollas Rezende
                 </h3>
-                <p className="text-neutral-dark/70 mb-2">
+                <p className="text-neutral-dark/70 text-sm">
                   Desenvolvedor Full Stack
                 </p>
-                <div className="flex gap-3">
-                  <a
-                    href="https://github.com/NicollasRezende"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-ipe hover:text-ipe-dark transition-colors"
-                  >
-                    GitHub
-                  </a>
-                  <span className="text-neutral-dark/30">•</span>
-                  <a
-                    href="https://www.linkedin.com/in/nicollas-rezende/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-ipe hover:text-ipe-dark transition-colors"
-                  >
-                    LinkedIn
-                  </a>
-                  <span className="text-neutral-dark/30">•</span>
-                  <a
-                    href="https://nikz.vercel.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-ipe hover:text-ipe-dark transition-colors"
-                  >
-                    Portfólio
-                  </a>
+              </div>
+
+              {/* Isadora Bittencourt */}
+              <div className="flex flex-col items-center text-center">
+                <div className="w-20 h-20 bg-gradient-to-br from-cerrado to-cerrado-dark rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4">
+                  IB
                 </div>
+                <h3 className="text-lg font-bold text-neutral-dark mb-1 break-words px-2">
+                  Isadora Bittencourt
+                </h3>
+                <p className="text-neutral-dark/70 text-sm">
+                  Desenvolvedora
+                </p>
+              </div>
+
+              {/* Eder Veloso */}
+              <div className="flex flex-col items-center text-center">
+                <div className="w-20 h-20 bg-gradient-to-br from-wisdom to-wisdom-dark rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4">
+                  EV
+                </div>
+                <h3 className="text-lg font-bold text-neutral-dark mb-1 break-words">
+                  Eder Veloso
+                </h3>
+                <p className="text-neutral-dark/70 text-sm">
+                  Desenvolvedor
+                </p>
               </div>
             </div>
           </div>

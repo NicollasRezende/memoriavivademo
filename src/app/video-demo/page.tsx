@@ -4,423 +4,103 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Mic,
-  MessageCircle,
-  Users,
-  MapPin,
   BookOpen,
   Heart,
-  ArrowRight,
-  ArrowLeft,
-  Play,
-  Volume2,
-  Settings,
   Bell,
   User,
-  Calendar,
+  Users,
+  MapPin,
+  Play,
+  Pause,
+  Volume2,
+  Settings,
 } from "lucide-react";
-import { CardSkeleton, TimelineSkeleton, CircleSkeleton } from "@/components/Skeleton";
+import Link from "next/link";
 
 const demoSteps = [
-  {
-    id: 1,
-    title: "Boas-vindas com Pequi",
-    description:
-      "Ao abrir o app, o Pequi te dá boas-vindas personalizadas e pergunta como você está.",
-    screen: "welcome",
-    icon: Heart,
+  { 
+    id: 1, 
+    title: "Boas-vindas com Pequi", 
+    description: "Ao abrir o app, o Pequi te dá boas-vindas personalizadas e pergunta como você está.",
+    screen: "welcome", 
+    icon: Heart, 
+    duration: 3000 
   },
-  {
-    id: 2,
-    title: "Check-in Emocional",
-    description:
-      "A IA acompanha seu humor diariamente. Escolha como está se sentindo e receba sugestões personalizadas.",
-    screen: "mood",
-    icon: Heart,
+  { 
+    id: 2, 
+    title: "Check-in Emocional", 
+    description: "A IA acompanha seu humor diariamente. Escolha como está se sentindo e receba sugestões personalizadas.",
+    screen: "mood", 
+    icon: Heart, 
+    duration: 3000 
   },
-  {
-    id: 3,
-    title: "Gravação de Memórias",
-    description:
-      "Aperte o botão e conte suas histórias. A IA organiza tudo automaticamente por temas e períodos.",
-    screen: "record",
-    icon: Mic,
+  { 
+    id: 3, 
+    title: "Gravação de Memórias", 
+    description: "Aperte o botão e conte suas histórias. A IA organiza tudo automaticamente por temas e períodos.",
+    screen: "record", 
+    icon: Mic, 
+    duration: 4000 
   },
-  {
-    id: 4,
-    title: "Linha do Tempo",
-    description:
-      "Veja suas memórias organizadas em capítulos: Infância, Juventude, Família, Trabalho...",
-    screen: "timeline",
-    icon: BookOpen,
+  { 
+    id: 4, 
+    title: "Linha do Tempo", 
+    description: "Veja suas memórias organizadas em capítulos: Infância, Juventude, Família, Trabalho...",
+    screen: "timeline", 
+    icon: BookOpen, 
+    duration: 3000 
   },
-  {
-    id: 5,
-    title: "Visualizar Memória",
-    description:
-      "Leia e ouça suas histórias gravadas. Adicione fotos e compartilhe com familiares.",
-    screen: "memory-detail",
-    icon: BookOpen,
+  { 
+    id: 5, 
+    title: "Visualizar Memória", 
+    description: "Leia e ouça suas histórias gravadas. Adicione fotos e compartilhe com familiares.",
+    screen: "memory-detail", 
+    icon: BookOpen, 
+    duration: 3000 
   },
-  {
-    id: 6,
-    title: "Círculos de Sabedoria",
-    description:
-      "Entre em grupos com pessoas que compartilham seus interesses. Comente por voz ou texto.",
-    screen: "circles",
-    icon: Users,
+  { 
+    id: 6, 
+    title: "Círculos de Sabedoria", 
+    description: "Entre em grupos com pessoas que compartilham seus interesses. Comente por voz ou texto.",
+    screen: "circles", 
+    icon: Users, 
+    duration: 3000 
   },
-  {
-    id: 7,
-    title: "Dentro do Círculo",
-    description:
-      "Veja publicações dos membros, curta e comente. Tudo com interface simples e acessível.",
-    screen: "circle-feed",
-    icon: Users,
+  { 
+    id: 7, 
+    title: "Dentro do Círculo", 
+    description: "Veja publicações dos membros, curta e comente. Tudo com interface simples e acessível.",
+    screen: "circle-feed", 
+    icon: Users, 
+    duration: 3000 
   },
-  {
-    id: 8,
-    title: "Eventos Próximos",
-    description:
-      "Descubra atividades perto de você. Integrado com Goiás Social, CRAS e Centros de Convivência.",
-    screen: "events",
-    icon: MapPin,
+  { 
+    id: 8, 
+    title: "Eventos Próximos", 
+    description: "Descubra atividades perto de você. Integrado com Goiás Social, CRAS e Centros de Convivência.",
+    screen: "events", 
+    icon: MapPin, 
+    duration: 3000 
   },
-  {
-    id: 9,
-    title: "Notificações",
-    description:
-      "Receba lembretes de eventos, mensagens de amigos e sugestões do Pequi.",
-    screen: "notifications",
-    icon: Bell,
+  { 
+    id: 9, 
+    title: "Notificações", 
+    description: "Receba lembretes de eventos, mensagens de amigos e sugestões do Pequi.",
+    screen: "notifications", 
+    icon: Bell, 
+    duration: 3000 
   },
-  {
-    id: 10,
-    title: "Perfil Pessoal",
-    description:
-      "Veja suas conquistas, estatísticas de bem-estar e personalize suas preferências.",
-    screen: "profile",
-    icon: User,
+  { 
+    id: 10, 
+    title: "Perfil Pessoal", 
+    description: "Veja suas conquistas, estatísticas de bem-estar e personalize suas preferências.",
+    screen: "profile", 
+    icon: User, 
+    duration: 3000 
   },
 ];
 
-export default function DemoPage() {
-  const [currentStep, setCurrentStep] = useState(0);
-  const [isRecording, setIsRecording] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-
-  // Simulate loading when changing screens
-  useEffect(() => {
-    setIsLoading(true);
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 600); // 600ms loading delay
-
-    return () => clearTimeout(timer);
-  }, [currentStep]);
-
-  const nextStep = () => {
-    if (currentStep < demoSteps.length - 1) {
-      setCurrentStep(currentStep + 1);
-    }
-  };
-
-  const prevStep = () => {
-    if (currentStep > 0) {
-      setCurrentStep(currentStep - 1);
-    }
-  };
-
-  const step = demoSteps[currentStep];
-
-  return (
-    <main className="min-h-screen bg-gradient-to-br from-neutral-light via-white to-cerrado-light/30 pt-20 pb-12 overflow-x-hidden">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <motion.div
-          className="text-center mb-12 px-2 sm:px-4 overflow-visible mt-8"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-dark mb-4 break-words overflow-visible whitespace-normal">
-            Demonstração <span className="text-ipe-dark">Interativa</span>
-          </h1>
-          <p className="text-lg sm:text-xl text-neutral-dark/70 max-w-2xl mx-auto px-2">
-            Navegue pelas funcionalidades principais da plataforma Memória Viva+
-          </p>
-        </motion.div>
-
-        {/* Main Demo Area */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start max-w-7xl mx-auto">
-          {/* Left - Phone Mockup */}
-          <motion.div
-            className="relative order-2 lg:order-1 lg:sticky lg:top-24"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
-          >
-            {/* Floating hint - REPOSICIONADO PARA CANTO SUPERIOR ESQUERDO */}
-            <motion.div
-              className="absolute -left-4 top-8 bg-wisdom text-white px-4 py-2 rounded-lg shadow-lg z-20 hidden lg:block"
-              animate={{ x: [-5, 5, -5] }}
-              transition={{ repeat: Infinity, duration: 2 }}
-            >
-              <div className="flex items-center gap-2">
-                <Play className="w-4 h-4" />
-                <span className="text-sm font-medium">Interaja!</span>
-              </div>
-              <div className="absolute top-1/2 -right-2 -translate-y-1/2 w-0 h-0 border-t-8 border-t-transparent border-b-8 border-b-transparent border-l-8 border-l-wisdom" />
-            </motion.div>
-
-            <div className="relative mx-auto max-w-sm">
-              {/* Phone frame */}
-              <div className="bg-neutral-dark rounded-[3rem] p-4 shadow-2xl">
-                <div className="bg-white rounded-[2.5rem] overflow-hidden relative">
-                  {/* Status bar */}
-                  <div className="bg-gradient-to-r from-ipe to-ipe-dark px-6 py-4 text-white flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <img src="/pequi.png" alt="Pequi" width={24} height={24} className="object-contain" />
-                      <span className="font-bold">Memória Viva+</span>
-                    </div>
-                    <div className="text-xs opacity-80">9:41</div>
-                  </div>
-
-                  {/* Screen content */}
-                  <div className="min-h-[600px] bg-neutral-light/30 p-6">
-                    <AnimatePresence mode="wait">
-                      {isLoading ? (
-                        <LoadingScreen key="loading" screenType={step.screen} />
-                      ) : (
-                        <>
-                          {step.screen === "welcome" && (
-                            <WelcomeScreen key="welcome" />
-                          )}
-                          {step.screen === "mood" && <MoodScreen key="mood" />}
-                          {step.screen === "record" && (
-                            <RecordScreen
-                              key="record"
-                              isRecording={isRecording}
-                              setIsRecording={setIsRecording}
-                            />
-                          )}
-                          {step.screen === "timeline" && (
-                            <TimelineScreen key="timeline" />
-                          )}
-                          {step.screen === "memory-detail" && (
-                            <MemoryDetailScreen key="memory-detail" />
-                          )}
-                          {step.screen === "circles" && (
-                            <CirclesScreen key="circles" />
-                          )}
-                          {step.screen === "circle-feed" && (
-                            <CircleFeedScreen key="circle-feed" />
-                          )}
-                          {step.screen === "events" && <EventsScreen key="events" />}
-                          {step.screen === "notifications" && (
-                            <NotificationsScreen key="notifications" />
-                          )}
-                          {step.screen === "profile" && (
-                            <ProfileScreen key="profile" />
-                          )}
-                        </>
-                      )}
-                    </AnimatePresence>
-                  </div>
-
-                  {/* Bottom navigation */}
-                  <div className="bg-white border-t p-4 flex justify-around">
-                    {[
-                      { icon: Heart, label: "Início" },
-                      { icon: BookOpen, label: "Memórias" },
-                      { icon: Users, label: "Círculos" },
-                      { icon: MapPin, label: "Eventos" },
-                    ].map((item, idx) => (
-                      <button
-                        key={idx}
-                        className="flex flex-col items-center gap-1 text-neutral-dark/60 hover:text-ipe transition-colors"
-                      >
-                        <item.icon className="w-6 h-6" />
-                        <span className="text-xs">{item.label}</span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Right - Step Description */}
-          <motion.div
-            className="order-1 lg:order-2 space-y-6"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3 }}
-          >
-            {/* Step indicator */}
-            <div className="flex items-center gap-2 flex-wrap">
-              {demoSteps.map((s, idx) => (
-                <div
-                  key={s.id}
-                  className={`h-2 rounded-full transition-all ${
-                    idx === currentStep
-                      ? "bg-ipe w-12"
-                      : idx < currentStep
-                      ? "bg-ipe/50 w-8"
-                      : "bg-neutral-dark/20 w-8"
-                  }`}
-                />
-              ))}
-            </div>
-
-            {/* Step content */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={step.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="space-y-6"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 bg-gradient-to-br from-cerrado to-cerrado-dark rounded-2xl flex items-center justify-center">
-                    <step.icon className="w-8 h-8 text-white" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-neutral-dark/60 font-medium">
-                      Passo {step.id} de {demoSteps.length}
-                    </p>
-                    <h2 className="text-3xl font-bold text-neutral-dark">
-                      {step.title}
-                    </h2>
-                  </div>
-                </div>
-
-                <p className="text-xl text-neutral-dark/80 leading-relaxed">
-                  {step.description}
-                </p>
-
-                {/* Features highlight */}
-                <div className="bg-white rounded-2xl p-6 shadow-lg">
-                  <h3 className="font-bold text-neutral-dark mb-4 flex items-center gap-2">
-                    <Volume2 className="w-5 h-5 text-ipe" />
-                    Recursos de Acessibilidade
-                  </h3>
-                  <ul className="space-y-2 text-sm text-neutral-dark/70">
-                    <li className="flex items-start gap-2">
-                      <span className="text-ipe">✓</span>
-                      <span>Navegação 100% por voz</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-ipe">✓</span>
-                      <span>Botões grandes (mínimo 80x80px)</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-ipe">✓</span>
-                      <span>Alto contraste e fontes ajustáveis</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-ipe">✓</span>
-                      <span>Interface simples - máximo 3 opções por tela</span>
-                    </li>
-                  </ul>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Navigation buttons */}
-            <div className="flex gap-4 pt-4">
-              <button
-                onClick={prevStep}
-                disabled={currentStep === 0}
-                className="flex-1 bg-white border-2 border-neutral-dark/20 text-neutral-dark px-6 py-4 rounded-xl font-medium hover:border-ipe hover:text-ipe transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-              >
-                <ArrowLeft className="w-5 h-5" />
-                Anterior
-              </button>
-              <button
-                onClick={nextStep}
-                disabled={currentStep === demoSteps.length - 1}
-                className="flex-1 bg-gradient-to-r from-ipe to-ipe-dark text-white px-6 py-4 rounded-xl font-medium hover:opacity-90 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg"
-              >
-                Próximo
-                <ArrowRight className="w-5 h-5" />
-              </button>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Bottom CTA */}
-        <motion.div
-          className="mt-20 text-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-        >
-          <div className="bg-gradient-to-r from-wisdom-light to-cerrado-light rounded-3xl p-12 max-w-4xl mx-auto">
-            <h3 className="text-3xl font-bold text-neutral-dark mb-4">
-              Pronto para transformar vidas?
-            </h3>
-            <p className="text-xl text-neutral-dark/80 mb-8">
-              Este é apenas um protótipo. A plataforma completa está em
-              desenvolvimento.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="/"
-                className="bg-ipe text-white px-8 py-4 rounded-full font-medium hover:bg-ipe-dark transition-colors shadow-lg"
-              >
-                Voltar ao Início
-              </a>
-              <a
-                href="/pitch"
-                className="bg-white text-ipe border-2 border-ipe px-8 py-4 rounded-full font-medium hover:bg-ipe/10 transition-colors"
-              >
-                Ver Apresentação Completa
-              </a>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    </main>
-  );
-}
-
-// Screen Components
-function LoadingScreen({ screenType }: { screenType: string }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="space-y-6"
-    >
-      {/* Show different skeletons based on screen type */}
-      {screenType === "timeline" || screenType === "memory-detail" ? (
-        <TimelineSkeleton />
-      ) : screenType === "circles" || screenType === "circle-feed" ? (
-        <CircleSkeleton />
-      ) : screenType === "notifications" || screenType === "events" ? (
-        <>
-          <CardSkeleton />
-          <CardSkeleton />
-        </>
-      ) : (
-        // Default skeleton for welcome, mood, record, profile screens
-        <>
-          <div className="animate-pulse space-y-4">
-            <div className="h-20 bg-neutral-dark/10 rounded-2xl" />
-            <div className="h-32 bg-neutral-dark/10 rounded-2xl" />
-            <div className="grid grid-cols-2 gap-3">
-              <div className="h-20 bg-neutral-dark/10 rounded-xl" />
-              <div className="h-20 bg-neutral-dark/10 rounded-xl" />
-            </div>
-          </div>
-        </>
-      )}
-    </motion.div>
-  );
-}
-
+// Telas completas copiadas da página de demo
 function WelcomeScreen() {
   return (
     <motion.div
@@ -521,13 +201,7 @@ function MoodScreen() {
   );
 }
 
-function RecordScreen({
-  isRecording,
-  setIsRecording,
-}: {
-  isRecording: boolean;
-  setIsRecording: (val: boolean) => void;
-}) {
+function RecordScreen() {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -545,46 +219,12 @@ function RecordScreen({
       </div>
 
       <div className="bg-white rounded-2xl p-8 text-center">
-        <button
-          onClick={() => setIsRecording(!isRecording)}
-          className={`w-32 h-32 rounded-full flex items-center justify-center mx-auto transition-all shadow-2xl ${
-            isRecording
-              ? "bg-red-500 scale-110"
-              : "bg-gradient-to-br from-ipe to-ipe-dark hover:scale-105"
-          }`}
-        >
+        <button className="w-32 h-32 rounded-full flex items-center justify-center mx-auto bg-gradient-to-br from-ipe to-ipe-dark shadow-2xl">
           <Mic className="w-16 h-16 text-white" />
         </button>
         <p className="mt-6 font-medium text-neutral-dark">
-          {isRecording ? (
-            <span className="text-red-500 flex items-center justify-center gap-2">
-              <span className="w-3 h-3 bg-red-500 rounded-full animate-pulse" />
-              Gravando...
-            </span>
-          ) : (
-            "Toque para gravar"
-          )}
+          Toque para gravar
         </p>
-      </div>
-
-      {isRecording && (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="bg-cerrado-light rounded-xl p-4 text-sm text-neutral-dark/80 italic"
-        >
-          "Eu lembro quando era criança em Pirenópolis. As festas juninas eram
-          tão bonitas..."
-        </motion.div>
-      )}
-
-      <div className="flex gap-2 justify-center">
-        <button className="bg-neutral-dark/10 hover:bg-neutral-dark/20 px-4 py-2 rounded-full text-sm transition-colors">
-          Pausar
-        </button>
-        <button className="bg-ipe hover:bg-ipe-dark text-white px-6 py-2 rounded-full text-sm transition-colors">
-          Finalizar
-        </button>
       </div>
     </motion.div>
   );
@@ -958,5 +598,215 @@ function ProfileScreen() {
         Configurações
       </button>
     </motion.div>
+  );
+}
+
+export default function VideoDemoPage() {
+  const [currentStep, setCurrentStep] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    if (!isPlaying || isPaused) return;
+
+    const step = demoSteps[currentStep];
+    const timer = setTimeout(() => {
+      if (currentStep < demoSteps.length - 1) {
+        setCurrentStep(currentStep + 1);
+      } else {
+        setIsPlaying(false);
+        setCurrentStep(0);
+      }
+    }, step.duration);
+
+    return () => clearTimeout(timer);
+  }, [currentStep, isPlaying, isPaused]);
+
+  const togglePlay = () => {
+    if (isPlaying) {
+      setIsPaused(!isPaused);
+    } else {
+      setIsPlaying(true);
+      setIsPaused(false);
+    }
+  };
+
+  const reset = () => {
+    setCurrentStep(0);
+    setIsPlaying(false);
+    setIsPaused(false);
+  };
+
+  const step = demoSteps[currentStep];
+
+  const renderScreen = () => {
+    switch (step.screen) {
+      case "welcome":
+        return <WelcomeScreen key="welcome" />;
+      case "mood":
+        return <MoodScreen key="mood" />;
+      case "record":
+        return <RecordScreen key="record" />;
+      case "timeline":
+        return <TimelineScreen key="timeline" />;
+      case "memory-detail":
+        return <MemoryDetailScreen key="memory-detail" />;
+      case "circles":
+        return <CirclesScreen key="circles" />;
+      case "circle-feed":
+        return <CircleFeedScreen key="circle-feed" />;
+      case "events":
+        return <EventsScreen key="events" />;
+      case "notifications":
+        return <NotificationsScreen key="notifications" />;
+      case "profile":
+        return <ProfileScreen key="profile" />;
+      default:
+        return <WelcomeScreen key="default" />;
+    }
+  };
+
+  return (
+    <main className="min-h-screen bg-gradient-to-br from-neutral-light via-white to-cerrado-light/30 pt-20 pb-12 overflow-x-hidden">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          className="text-center mb-12 px-2 sm:px-4 overflow-visible mt-8"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-dark mb-4 break-words overflow-visible whitespace-normal">
+            Video <span className="text-ipe-dark">Demo</span>
+          </h1>
+          <p className="text-lg sm:text-xl text-neutral-dark/70 max-w-2xl mx-auto px-2">
+            Assista a demonstração automática de todas as funcionalidades
+          </p>
+        </motion.div>
+
+        {/* Controls */}
+        <div className="flex justify-center items-center gap-4 mb-8">
+          <button
+            onClick={togglePlay}
+            className="bg-gradient-to-r from-ipe to-ipe-dark text-white px-8 py-3 rounded-full font-medium hover:opacity-90 transition-opacity shadow-lg flex items-center gap-2"
+          >
+            {isPaused ? (
+              <>
+                <Play className="w-5 h-5" />
+                Continuar
+              </>
+            ) : isPlaying ? (
+              <>
+                <Pause className="w-5 h-5" />
+                Pausar
+              </>
+            ) : (
+              <>
+                <Play className="w-5 h-5" />
+                Iniciar Demo
+              </>
+            )}
+          </button>
+          <button
+            onClick={reset}
+            className="bg-white border-2 border-neutral-dark/20 text-neutral-dark px-6 py-3 rounded-full font-medium hover:border-ipe hover:text-ipe transition-colors"
+          >
+            Reiniciar
+          </button>
+        </div>
+
+        {/* Progress */}
+        <div className="max-w-4xl mx-auto mb-8">
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <span className="text-sm text-neutral-dark/60">
+              Passo {currentStep + 1} de {demoSteps.length}
+            </span>
+            <span className="text-sm text-neutral-dark/60">• {step.title}</span>
+          </div>
+          <div className="w-full bg-neutral-dark/10 rounded-full h-2">
+            <motion.div
+              className="bg-gradient-to-r from-ipe to-ipe-dark h-full"
+              initial={{ width: "0%" }}
+              animate={{
+                width: isPlaying && !isPaused
+                  ? `${((currentStep + 1) / demoSteps.length) * 100}%`
+                  : `${(currentStep / demoSteps.length) * 100}%`,
+              }}
+              transition={{ duration: 0.3 }}
+            />
+          </div>
+        </div>
+
+        {/* Mockup com telas */}
+        <div className="max-w-4xl mx-auto mb-8">
+          <div className="relative mx-auto max-w-sm">
+            {/* Phone frame */}
+            <div className="bg-neutral-dark rounded-[3rem] p-4 shadow-2xl">
+              <div className="bg-white rounded-[2.5rem] overflow-hidden relative">
+                {/* Status bar */}
+                <div className="bg-gradient-to-r from-ipe to-ipe-dark px-6 py-4 text-white flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <img src="/pequi.png" alt="Pequi" width={24} height={24} className="object-contain" />
+                    <span className="font-bold">Memória Viva+</span>
+                  </div>
+                  <div className="text-xs opacity-80">9:41</div>
+                </div>
+
+                {/* Screen content */}
+                <div className="min-h-[600px] bg-neutral-light/30 p-6">
+                  <AnimatePresence mode="wait">
+                    {renderScreen()}
+                  </AnimatePresence>
+                </div>
+
+                {/* Bottom navigation */}
+                <div className="bg-white border-t p-4 flex justify-around">
+                  {[
+                    { icon: Heart, label: "Início" },
+                    { icon: BookOpen, label: "Memórias" },
+                    { icon: Users, label: "Círculos" },
+                    { icon: MapPin, label: "Eventos" },
+                  ].map((item, idx) => (
+                    <button
+                      key={idx}
+                      className="flex flex-col items-center gap-1 text-neutral-dark/60 hover:text-ipe transition-colors"
+                    >
+                      <item.icon className="w-6 h-6" />
+                      <span className="text-xs">{item.label}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Step Info */}
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-white rounded-2xl p-8 shadow-lg text-center">
+            <div className="flex items-center justify-center gap-4 mb-4">
+              <div className="w-16 h-16 bg-gradient-to-br from-cerrado to-cerrado-dark rounded-2xl flex items-center justify-center">
+                <step.icon className="w-8 h-8 text-white" />
+              </div>
+              <div>
+                <p className="text-sm text-neutral-dark/60 font-medium">
+                  Passo {step.id} de {demoSteps.length}
+                </p>
+                <h2 className="text-3xl font-bold text-neutral-dark">
+                  {step.title}
+                </h2>
+              </div>
+            </div>
+            <p className="text-xl text-neutral-dark/80 leading-relaxed mb-6">
+              {step.description}
+            </p>
+            <Link
+              href={`/demo`}
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-ipe to-ipe-dark text-white px-6 py-3 rounded-full font-medium hover:opacity-90 transition-opacity shadow-lg"
+            >
+              Ver Demo Interativa Completa
+            </Link>
+          </div>
+        </div>
+      </div>
+    </main>
   );
 }

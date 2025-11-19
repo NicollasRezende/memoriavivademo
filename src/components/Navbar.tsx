@@ -4,10 +4,12 @@ import { useState } from "react";
 import Link from "next/link";
 import { Menu, X, Heart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import PequiIcon from "./PequiIcon";
 
 const navLinks = [
   { href: "/", label: "Início" },
   { href: "/demo", label: "Demo Interativa" },
+  { href: "/video-demo", label: "Video Demo" },
   { href: "/pitch", label: "Pitch" },
   { href: "/sobre", label: "Sobre" },
 ];
@@ -21,8 +23,8 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="text-3xl group-hover:scale-110 transition-transform">
-              🥭
+            <div className="group-hover:scale-110 transition-transform">
+              <PequiIcon size={32} />
             </div>
             <div>
               <span className="text-xl font-bold text-ipe-dark">Memória Viva</span>

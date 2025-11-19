@@ -48,9 +48,11 @@ const timelineEvents = [
 
 export default function MemoryTimeline() {
   return (
-    <section className="py-20 bg-white relative overflow-hidden">
-      {/* Asymmetric decorative element */}
+    <section className="py-20 md:py-28 bg-gradient-to-br from-white via-cerrado-light/10 to-white relative overflow-hidden">
+      {/* Asymmetric decorative elements - Enhanced */}
       <div className="absolute top-20 right-0 w-1/2 h-96 bg-gradient-to-l from-wisdom-light/20 to-transparent rounded-l-full" />
+      <div className="absolute bottom-0 left-0 w-2/5 h-80 bg-gradient-to-tr from-cerrado-light/15 to-transparent rounded-tr-[200px]" />
+      <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-ipe/5 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div

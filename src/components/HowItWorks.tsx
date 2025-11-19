@@ -21,7 +21,7 @@ const steps = [
     id: 2,
     icon: UserPlus,
     title: "Crie seu Perfil",
-    description: "Configure suas preferências com ajuda do Sabichão.",
+    description: "Configure suas preferências com ajuda do Pequi.",
     color: "ipe",
     details: [
       "Cadastro por voz opcional",
@@ -69,7 +69,7 @@ const steps = [
     id: 6,
     icon: Heart,
     title: "Acompanhamento",
-    description: "A IA Acolhe monitora seu bem-estar diariamente.",
+    description: "O Pequi monitora seu bem-estar diariamente.",
     color: "wisdom",
     details: [
       "Check-ins emocionais",
@@ -81,7 +81,6 @@ const steps = [
 
 export default function HowItWorks() {
   const [activeStep, setActiveStep] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(false);
 
   const colorClasses = {
     cerrado: {
@@ -121,10 +120,10 @@ export default function HowItWorks() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-neutral-dark mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-neutral-dark mb-4 leading-tight">
             Como Funciona?
           </h2>
-          <p className="text-xl text-neutral-dark/70 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-neutral-dark/80 max-w-2xl mx-auto leading-relaxed">
             Em 6 passos simples, você está conectado e compartilhando memórias
           </p>
         </motion.div>
@@ -141,7 +140,7 @@ export default function HowItWorks() {
                 <motion.button
                   key={step.id}
                   onClick={() => setActiveStep(index)}
-                  className={`w-full text-left bg-white rounded-2xl p-6 shadow-sm transition-all relative overflow-hidden ${
+                  className={`w-full text-left bg-white rounded-2xl p-6 md:p-7 shadow-sm transition-all relative overflow-hidden ${
                     isActive ? "shadow-xl scale-105 border-2 " + stepColors.border : "hover:shadow-md"
                   }`}
                   initial={{ opacity: 0, x: -20 }}
@@ -159,7 +158,7 @@ export default function HowItWorks() {
                     />
                   )}
 
-                  <div className="flex items-center gap-4 relative z-10">
+                  <div className="flex items-center gap-5 relative z-10">
                     {/* Number/Icon */}
                     <div
                       className={`flex-shrink-0 w-16 h-16 rounded-2xl flex items-center justify-center transition-all ${
@@ -178,23 +177,23 @@ export default function HowItWorks() {
                     </div>
 
                     {/* Content */}
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className={`text-sm font-medium ${isActive ? stepColors.text : "text-neutral-dark/60"}`}>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className={`text-sm font-semibold ${isActive ? stepColors.text : "text-neutral-dark/60"}`}>
                           Passo {step.id}
                         </span>
                       </div>
-                      <h3 className={`text-lg font-bold mb-1 ${isActive ? "text-neutral-dark" : "text-neutral-dark/80"}`}>
+                      <h3 className={`text-xl md:text-2xl font-bold mb-2 leading-tight ${isActive ? "text-neutral-dark" : "text-neutral-dark/90"}`}>
                         {step.title}
                       </h3>
-                      <p className={`text-sm ${isActive ? "text-neutral-dark/70" : "text-neutral-dark/50"}`}>
+                      <p className={`text-base leading-relaxed ${isActive ? "text-neutral-dark/80" : "text-neutral-dark/60"}`}>
                         {step.description}
                       </p>
                     </div>
 
                     {/* Arrow */}
                     <ChevronRight
-                      className={`w-6 h-6 transition-all ${
+                      className={`w-6 h-6 flex-shrink-0 transition-all ${
                         isActive ? stepColors.text + " translate-x-1" : "text-neutral-dark/30"
                       }`}
                     />
@@ -212,20 +211,20 @@ export default function HowItWorks() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <div className={`bg-gradient-to-br ${colors.bg} rounded-3xl p-8 md:p-12 text-white shadow-2xl`}>
+            <div className={`bg-gradient-to-br ${colors.bg} rounded-3xl p-8 md:p-10 text-neutral-dark shadow-2xl`}>
               {/* Icon */}
-              <div className="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center mb-6">
-                <activeStepData.icon className="w-12 h-12" />
+              <div className="w-24 h-24 bg-white/90 backdrop-blur-sm rounded-3xl flex items-center justify-center mb-6 shadow-lg">
+                <activeStepData.icon className="w-12 h-12 text-neutral-dark" />
               </div>
 
               {/* Title */}
-              <div className="mb-2">
-                <span className="text-sm opacity-80">Passo {activeStepData.id} de {steps.length}</span>
+              <div className="mb-3">
+                <span className="text-base text-neutral-dark/80 font-medium">Passo {activeStepData.id} de {steps.length}</span>
               </div>
-              <h3 className="text-3xl md:text-4xl font-bold mb-4">
+              <h3 className="text-3xl md:text-4xl font-bold mb-5 leading-tight text-neutral-dark">
                 {activeStepData.title}
               </h3>
-              <p className="text-lg opacity-90 mb-8 leading-relaxed">
+              <p className="text-lg md:text-xl text-neutral-dark/80 mb-8 leading-relaxed">
                 {activeStepData.description}
               </p>
 
@@ -234,13 +233,13 @@ export default function HowItWorks() {
                 {activeStepData.details.map((detail, idx) => (
                   <motion.div
                     key={idx}
-                    className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-xl p-4"
+                    className="flex items-center gap-4 bg-white/90 backdrop-blur-sm rounded-xl p-4 md:p-5 shadow-sm"
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: idx * 0.1 }}
                   >
-                    <div className="w-2 h-2 bg-white rounded-full" />
-                    <span className="text-sm">{detail}</span>
+                    <div className="w-2.5 h-2.5 bg-neutral-dark rounded-full flex-shrink-0" />
+                    <span className="text-base md:text-lg leading-relaxed text-neutral-dark">{detail}</span>
                   </motion.div>
                 ))}
               </div>
@@ -250,7 +249,7 @@ export default function HowItWorks() {
                 {activeStep > 0 && (
                   <button
                     onClick={() => setActiveStep(activeStep - 1)}
-                    className="flex-1 bg-white/20 hover:bg-white/30 backdrop-blur-sm py-3 rounded-xl font-medium transition-colors"
+                    className="flex-1 bg-white/90 hover:bg-white backdrop-blur-sm py-3 md:py-4 rounded-xl font-semibold text-base transition-colors text-neutral-dark shadow-sm"
                   >
                     ← Anterior
                   </button>
@@ -258,7 +257,7 @@ export default function HowItWorks() {
                 {activeStep < steps.length - 1 && (
                   <button
                     onClick={() => setActiveStep(activeStep + 1)}
-                    className="flex-1 bg-white hover:bg-white/90 text-neutral-dark py-3 rounded-xl font-medium transition-colors"
+                    className="flex-1 bg-white hover:bg-white/90 text-neutral-dark py-3 md:py-4 rounded-xl font-semibold text-base transition-colors shadow-sm"
                   >
                     Próximo →
                   </button>
@@ -267,7 +266,7 @@ export default function HowItWorks() {
             </div>
 
             {/* Progress bar */}
-            <div className="mt-6 bg-neutral-dark/10 rounded-full h-2 overflow-hidden">
+            <div className="mt-6 bg-neutral-dark/10 rounded-full h-2.5 overflow-hidden">
               <motion.div
                 className={`h-full bg-gradient-to-r ${colors.bg}`}
                 initial={{ width: 0 }}
@@ -275,7 +274,7 @@ export default function HowItWorks() {
                 transition={{ duration: 0.5 }}
               />
             </div>
-            <p className="text-center text-sm text-neutral-dark/60 mt-2">
+            <p className="text-center text-base text-neutral-dark/70 mt-3 font-medium">
               {activeStep + 1} de {steps.length} passos concluídos
             </p>
           </motion.div>
@@ -288,12 +287,12 @@ export default function HowItWorks() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <p className="text-lg text-neutral-dark/70 mb-6">
+          <p className="text-lg md:text-xl text-neutral-dark/80 mb-6 leading-relaxed">
             Pronto para começar sua jornada?
           </p>
           <a
             href="/demo"
-            className="inline-block bg-gradient-to-r from-ipe to-ipe-dark text-white px-8 py-4 rounded-full font-medium shadow-lg hover:opacity-90 transition-opacity"
+            className="inline-block bg-gradient-to-r from-ipe to-ipe-dark text-white px-8 py-4 rounded-full font-semibold text-base shadow-lg hover:opacity-90 transition-opacity"
           >
             Ver Demo Interativa
           </a>

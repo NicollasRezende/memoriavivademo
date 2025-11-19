@@ -5,6 +5,7 @@ import MemoryTimeline from "@/components/MemoryTimeline";
 import AICompanion from "@/components/AICompanion";
 import SocialCircles from "@/components/SocialCircles";
 import EventsMap from "@/components/EventsMap";
+import Impact from "@/components/Impact";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
     <main className="min-h-screen">
       <Hero />
       <Features />
+      <Impact />
       <HowItWorks />
       <MemoryTimeline />
       <AICompanion />

@@ -11,8 +11,13 @@ import {
   BarChart,
   CheckCircle,
   ArrowRight,
+  Mic,
+  Bot,
+  Map,
+  BookOpen,
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function PitchPage() {
   return (
@@ -29,7 +34,9 @@ export default function PitchPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="text-8xl mb-8">🥭</div>
+            <div className="flex justify-center mb-8">
+              <img src="/pequi.png" alt="Pequi" width={96} height={96} className="object-contain" />
+            </div>
             <h1 className="text-6xl md:text-8xl font-bold mb-6">
               <span className="text-ipe-dark">Memória Viva</span>
               <span className="text-cerrado-dark">+</span>
@@ -148,75 +155,90 @@ export default function PitchPage() {
               <div className="w-16 h-16 bg-gradient-to-br from-ipe to-ipe-dark rounded-2xl flex items-center justify-center">
                 <Heart className="w-8 h-8 text-white" />
               </div>
-              <h2 className="text-5xl font-bold text-neutral-dark">Nossa Solução</h2>
+              <h2 className="text-5xl font-bold text-neutral-dark">Memória Viva+</h2>
             </div>
 
-            <p className="text-2xl text-neutral-dark/80 mb-12 max-w-4xl">
-              Um ecossistema digital que combina{" "}
+            <p className="text-2xl text-neutral-dark/80 mb-12 max-w-4xl leading-relaxed">
+              Plataforma de{" "}
+              <span className="font-bold text-wisdom-dark">
+                tecnologia afetiva
+              </span>{" "}
+              que combina{" "}
               <span className="font-bold text-ipe-dark">
-                IA afetiva, conexões sociais
+                IA conversacional, redes sociais seguras
               </span>{" "}
               e{" "}
               <span className="font-bold text-cerrado-dark">
-                integração com serviços públicos
-              </span>
-              .
+                integração territorial com serviços públicos de Goiás
+              </span>{" "}
+              para ampliar autonomia, bem-estar mental e inclusão social de pessoas 60+.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
                 {
-                  icon: "🎙️",
+                  icon: BookOpen,
                   title: "Memória Viva",
                   description: "Storytelling terapêutico com IA",
                   color: "cerrado",
                 },
                 {
-                  icon: "👥",
+                  icon: Users,
                   title: "Círculos de Sabedoria",
                   description: "Rede social segura para 60+",
                   color: "ipe",
                 },
                 {
-                  icon: "🤖",
-                  title: "IA Acolhe",
+                  icon: Bot,
+                  title: "Pequi",
                   description: "Companheiro emocional 24/7",
                   color: "wisdom",
                 },
                 {
-                  icon: "🗺️",
+                  icon: Map,
                   title: "Mapa de Eventos",
                   description: "Integração territorial",
                   color: "ipe",
                 },
                 {
-                  icon: "🎤",
+                  icon: Mic,
                   title: "Controle por Voz",
                   description: "Zero barreira tecnológica",
                   color: "cerrado",
                 },
                 {
-                  icon: "❤️",
+                  icon: Heart,
                   title: "Bem-Estar Mental",
                   description: "Check-ins e acompanhamento",
                   color: "wisdom",
                 },
-              ].map((feature, idx) => (
-                <motion.div
-                  key={idx}
-                  className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
-                >
-                  <div className="text-5xl mb-4">{feature.icon}</div>
-                  <h3 className="text-xl font-bold text-neutral-dark mb-2">
-                    {feature.title}
-                  </h3>
-                  <p className="text-neutral-dark/70">{feature.description}</p>
-                </motion.div>
-              ))}
+              ].map((feature, idx) => {
+                const colorClasses = {
+                  cerrado: "from-cerrado-light to-cerrado",
+                  ipe: "from-ipe-light to-ipe",
+                  wisdom: "from-wisdom-light to-wisdom",
+                };
+                const IconComponent = feature.icon;
+
+                return (
+                  <motion.div
+                    key={idx}
+                    className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.1 }}
+                  >
+                    <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${colorClasses[feature.color as keyof typeof colorClasses]} flex items-center justify-center mb-4 shadow-md`}>
+                      <IconComponent className="w-7 h-7 text-white" />
+                    </div>
+                    <h3 className="text-xl font-bold text-neutral-dark mb-2">
+                      {feature.title}
+                    </h3>
+                    <p className="text-neutral-dark/70">{feature.description}</p>
+                  </motion.div>
+                );
+              })}
             </div>
           </motion.div>
         </div>
@@ -290,9 +312,11 @@ export default function PitchPage() {
                 viewport={{ once: true }}
               >
                 <div className="text-center">
-                  <div className="text-8xl mb-6">🥭</div>
+                  <div className="flex justify-center mb-6">
+                      <img src="/pequi.png" alt="Pequi" width={96} height={96} className="object-contain" />
+                    </div>
                   <h3 className="text-3xl font-bold text-neutral-dark mb-4">
-                    Sabichão
+                    Pequi
                   </h3>
                   <p className="text-xl text-neutral-dark/80">
                     Mascote que conecta tecnologia com a cultura goiana (pequi
